@@ -1,0 +1,7 @@
+h1 Landing#index
+p Find me in app/views/landing/index.html.slim
+
+- if current_auth
+  h2 Hello #{current_auth['info']['name']}!
+- else
+  a href='/auth/trello' login via trello
