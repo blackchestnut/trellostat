@@ -40,6 +40,7 @@ gem 'ruby-trello'
 gem 'omniauth'
 gem 'omniauth-trello'
 gem 'slim-rails'
+#gem 'draper'
 
 group :development do
   gem 'better_errors'

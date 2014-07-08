@@ -6,4 +6,10 @@ module ApplicationHelper
   def current_auth
     session[:auth]
   end
+
+  def client
+    if current_auth
+      @client ||= Client.new current_auth
+    end
+  end
 end
