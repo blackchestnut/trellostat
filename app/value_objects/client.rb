@@ -22,4 +22,8 @@ class Client
   def boards
     @boards ||= member.boards
   end
+
+  def board id
+    boards.select{ |b| b.id == id }.first
+  end
 end

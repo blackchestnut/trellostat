@@ -1,8 +1,0 @@
-- if current_auth
-  h2 Hello #{client.member.full_name}!
-  h3 Boards
-  ul
-    - client.member.boards.each do |board|
-      li = board.name
-- else
-  a href='/auth/trello' login via trello

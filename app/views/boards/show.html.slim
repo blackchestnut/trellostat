@@ -1,0 +1,15 @@
+a href="#{boards_url}" back to list
+h1
+  = @board.name
+
+table border=1
+  tr
+    th style="text-align: left; min-width: 100px;"
+      | List
+    th Cards
+  - @board.lists.each do |list|
+    tr
+      td
+        = list.name
+      td style="text-align: right;"
+        = list.cards.size

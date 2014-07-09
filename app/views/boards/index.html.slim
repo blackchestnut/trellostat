@@ -1,0 +1,6 @@
+h2 Hello #{client.member.full_name}!
+h3 Boards
+ul
+  - client.member.boards.each do |board|
+    li
+      a href="#{boards_show_url uid: board.id}" = board.name
