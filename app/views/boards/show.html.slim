@@ -4,12 +4,23 @@ h1
 
 table border=1
   tr
-    th style="text-align: left; min-width: 100px;"
+    th.text-left style="min-width: 100px;"
       | List
     th Cards
   - @board.lists.each do |list|
     tr
       td
         = list.name
-      td style="text-align: right;"
+      td.text-right
         = list.cards.size
+  tr
+    td.text-right colspan=2
+      = @board.lists.sum{ |list| list.cards.size }
+
+
+h2 Overview
+- @board.lists.each do |list|
+  h3 = list.name
+  ol
+    - list.cards.each do |card|
+      li = card.name
