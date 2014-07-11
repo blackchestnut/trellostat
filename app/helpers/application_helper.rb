@@ -7,6 +7,10 @@ module ApplicationHelper
     session[:auth]
   end
 
+  def reset_auth
+    session[:auth] = nil
+  end
+
   def client
     if current_auth
       @client ||= Client.new current_auth

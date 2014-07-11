@@ -1,25 +1,24 @@
-a href="#{boards_url}" back to list
-h1
-  = @board.name
+a href="#{boards_url}" back to board list
+h1 = @board.name
 
 table border=1
   tr
     th.text-left style="min-width: 100px;"
       | List
     th Cards
-  - @board.lists.each do |list|
+  - @lists.each do |list|
     tr
       td
-        = list.name
+        a href="#{boards_lists_show_url @board.id, list.id}" = list.name
       td.text-right
-        = list.cards.size
+        = list.cards.count
   tr
     td.text-right colspan=2
-      = @board.lists.sum{ |list| list.cards.size }
+      = @total_cards
 
 
-h2 Overview
-- @board.lists.each do |list|
+/h2 Overview
+/- @board.lists.each do |list|
   h3 = list.name
   ol
     - list.cards.each do |card|

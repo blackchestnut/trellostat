@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
+
   root 'landing#index'
   get '/auth/:provider/callback', to: 'sessions#create'
+  get '/logout', to: 'sessions#logout', as: :logout
 
-  resources :boards, only: [:index, :show], format: false
-  get 'boards/:uid' => 'boards#show', as: :boards_show
+  resources :boards, only: [:index], format: false
+  get 'boards/:board_id' => 'boards#show', as: :boards_show
+  get 'boards/:board_id/lists/:list_id' => 'lists#show', as: :boards_lists_show
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

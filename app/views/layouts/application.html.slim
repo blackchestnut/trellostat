@@ -8,4 +8,8 @@ html
     = csrf_meta_tags
 
   body
+    - if client
+      .logout
+        span = client.member.full_name
+        a href="#{logout_url}" Logout
     = yield
