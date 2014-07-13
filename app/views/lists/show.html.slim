@@ -1,21 +1,26 @@
 a href="#{boards_show_url board_id: @board.id}" back to board
 h1 = @board.name
-h2 = @list.name
 
-table border=1
-  tr
-    th.text-left Card
-    th Labels
-    th WIP, days
-    th Last Activity
-  - @list.cards.each do |card|
-    - actions = card.actions
+- @lists.each do |list|
+  h2 = list.name
+  table border=1
     tr
-      td
-        a href="#{card.url}" target="_blank" = card.name
-      td
-        - card.card_labels.each do |label|
-          span style="color:#{label['color']}" = label['name']
-          span &nbsp;
-      td.text-right = (actions.first.date.to_date - actions.last.date.to_date).to_i
-      td.text-left = actions.first.date.strftime '%d.%m'
+      th ID
+      th.text-left Card
+      th Labels
+      th WIP, days
+      th Last Activity
+    - list.cards.each do |card|
+      - actions = card.actions
+      tr
+        td
+          a href="#{card.url}" target="_blank" = card.short_id
+        td = card.name
+        td
+          - card.card_labels.each do |label|
+            span style="color:#{label['color']}" = label['name']
+            span &nbsp;
+        td.text-right = (actions.first.date.to_date - actions.last.date.to_date).to_i + 1
+        td.text-left = actions.first.date.strftime '%d.%m'
+
+br
