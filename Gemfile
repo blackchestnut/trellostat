@@ -41,7 +41,7 @@ gem 'omniauth'
 gem 'omniauth-trello'
 gem 'slim-rails'
 #gem 'draper'
-
+gem 'newrelic_rpm'
 gem 'rails_12factor', group: :production
 
 group :development do
