@@ -13,13 +13,9 @@ table border=1
       td.text-right
         = list.cards.count
   tr
-    td.text-right colspan=2
+  tr
+  tr
+    td
+      a href="#{boards_lists_show_url @board.id, 'all'}" Total Cards
+    td.text-right
       = @total_cards
-
-
-/h2 Overview
-/- @board.lists.each do |list|
-  h3 = list.name
-  ol
-    - list.cards.each do |card|
-      li = card.name
