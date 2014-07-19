@@ -1,10 +1,12 @@
 class ListsController < ApplicationController
+  before_action :fetch_board
+  before_action :fetch_lists
+
   def show
-    @board = client.board(params[:board_id])
-    if params[:list_id] == 'all'
-      @lists = @board.lists
-    else
-      @lists = @board.lists.select{ |e| e.id == params[:list_id] }
-    end
+  end
+
+private
+  def fetch_lists
+    @lists = @board.lists.select{ |e| e.id == params[:list_id] || params[:list_id] == 'all' }
   end
 end
