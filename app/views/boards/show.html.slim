@@ -9,7 +9,7 @@ table border=1
   - @lists.each do |list|
     tr
       td
-        a href="#{boards_lists_show_url @board.id, list.id}" = list.name
+        a href="#{boards_lists_show_url @board.id, list.id}?last=20" = list.name
       td.text-right
         = list.cards.count
   tr

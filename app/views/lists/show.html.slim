@@ -3,6 +3,14 @@ h1 = @board.name
 
 - @lists.each do |list|
   h2 = list.name
+
+  - cards = list.cards
+  - if params[:last] || params[:first]
+    - if params[:last]
+      - cards = cards.last params[:last].to_i
+    - else
+      - cards = cards.first params[:first].to_i
+
   table border=1
     tr
       th ID
@@ -10,7 +18,8 @@ h1 = @board.name
       th Labels
       th WIP, days
       th Last Activity
-    - list.cards.each do |card|
+
+    - cards.each do |card|
       - actions = card.actions
       tr
         td
@@ -23,4 +32,10 @@ h1 = @board.name
         td.text-right = (actions.first.date.to_date - actions.last.date.to_date).to_i + 1
         td.text-left = actions.first.date.strftime '%d.%m'
 
+  div
+    a href="#{boards_lists_show_url @board.id, list.id}?first=20" First 20
+    | |
+    a href="#{boards_lists_show_url @board.id, list.id}?last=20" Last 20
+    | |
+    a href="#{boards_lists_show_url @board.id, list.id}" All
 br
