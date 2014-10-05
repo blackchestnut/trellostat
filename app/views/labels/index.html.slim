@@ -1,0 +1,11 @@
+a href="#{boards_show_url board_id: @board.id}" back to board
+h1 = @board.name
+h2 Group labels
+table border=1
+  tr
+    th Label
+    th Cards
+  - @labels.each do |name, data|
+    tr
+      td style="color: #{data[:color]}" = name
+      td.text-right = data[:cards]

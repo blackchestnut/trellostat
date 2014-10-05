@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :boards, only: [:index], format: false
   get 'boards/:board_id' => 'boards#show', as: :boards_show
   get 'boards/:board_id/lists/:list_id' => 'lists#show', as: :boards_lists_show
+  get 'boards/:board_id/labels' => 'labels#index', as: :labels
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
