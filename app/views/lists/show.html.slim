@@ -3,14 +3,6 @@ h1 = @board.name
 
 - @lists.each do |list|
   h2 = list.name
-
-  - cards = list.cards
-  - if params[:last] || params[:first]
-    - if params[:last]
-      - cards = cards.last params[:last].to_i
-    - else
-      - cards = cards.first params[:first].to_i
-
   table border=1
     tr
       th ID
@@ -19,8 +11,7 @@ h1 = @board.name
       th WIP, days
       th Last Activity
 
-    - cards.each do |card|
-      - actions = card.actions
+    - CardsFilter.new(params).for(list.cards).each do |card|
       tr
         td
           a href="#{card.url}" target="_blank" = card.short_id
@@ -29,13 +20,21 @@ h1 = @board.name
           - card.card_labels.each do |label|
             span style="color:#{label['color']}" = label['name']
             span &nbsp;
+        - actions = card.actions
         td.text-right = (actions.first.date.to_date - actions.last.date.to_date).to_i + 1
         td.text-left = actions.first.date.strftime '%d.%m'
 
-  div
-    a href="#{boards_lists_show_url @board.id, list.id}?first=20" First 20
-    | |
-    a href="#{boards_lists_show_url @board.id, list.id}?last=20" Last 20
-    | |
-    a href="#{boards_lists_show_url @board.id, list.id}" All
+  br
+    table border=1
+      tr
+        td
+          a href="#{boards_lists_show_url @board.id, list.id}?first=20" First 20th
+        td
+          a href="#{boards_lists_show_url @board.id, list.id}?last=20" Last 20th
+        td
+          a href="#{boards_lists_show_url @board.id, list.id}?oldest=5" Oldest 5th
+        td
+          a href="#{boards_lists_show_url @board.id, list.id}?newest=5" Newest 5th
+        td
+          a href="#{boards_lists_show_url @board.id, list.id}" All
 br
